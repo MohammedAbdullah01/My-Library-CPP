@@ -240,4 +240,4 @@ These classes are designed to be used independently or together, providing a rob
   - `setMonth()`
   - `setYear()`
 - **Enums**:
-  - `enNumberOfDaysPerMonth
+  - enNumberOfDaysPerMonth
