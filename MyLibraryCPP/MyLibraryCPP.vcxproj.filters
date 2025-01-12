@@ -44,5 +44,14 @@
     <ClInclude Include="clsSquare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsInputValidate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsInputRead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

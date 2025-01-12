@@ -6,32 +6,32 @@ using namespace std;
 class clsRectangle
 {
 private:
-	float _Width, _Height, _Diagonal = 0;
+	double _Width, _Height, _Diagonal = 0;
 
 public:
 
-	clsRectangle(float width , float height)
+	clsRectangle(double width , double height)
 	{
 		_Width = width;
 		_Height = height;
 	}
 
-	static float calculateRectangleArea(float width, float height)
+	static double calculateRectangleArea(double width, double height)
 	{
 		return height * width;
 	}
 
-	static float calculateRectangleArea(clsRectangle rectangle)
+	static double calculateRectangleArea(clsRectangle rectangle)
 	{
 		return calculateRectangleArea(rectangle._Width , rectangle._Height);
 	}
 
-	float calculateRectangleArea()
+	double calculateRectangleArea()
 	{
 		return calculateRectangleArea(_Width, _Height);
 	}
 
-	static double calculateRectangleAreaThroughDiagonal(float height, float diagonal)
+	static double calculateRectangleAreaThroughDiagonal(double height, double diagonal)
 	{
 		return (double) height * sqrt(pow(diagonal, 2) - pow(height, 2));
 	}
@@ -46,38 +46,38 @@ public:
 		return calculateRectangleAreaThroughDiagonal(height, diagonal);
 	}
 
-	float getWidth()
+	double getWidth()
 	{
 		return _Width;
 	}
 
-	float getHeight()
+	double getHeight()
 	{
 		return _Height;
 	}
 
-	float getDiagonal()
+	double getDiagonal()
 	{
 		return _Diagonal;
 	}
 
-	void setWidth(float width)
+	void setWidth(double width)
 	{
 		_Width = width;
 	}
 
-	void setHeight(float height)
+	void setHeight(double height)
 	{
 		_Height = height;
 	}
 
-	void setDiagonal(float diagonal)
+	void setDiagonal(double diagonal)
 	{
 		_Diagonal = diagonal;
 	}
 
-	__declspec(property(get = getWidth,		put = setWidth))	short width;
-	__declspec(property(get = getHeight,	put = setHeight))	short height;
-	__declspec(property(get = getDiagonal,	put = setDiagonal))	short diagonal;
+	__declspec(property(get = getWidth,		put = setWidth))	double width;
+	__declspec(property(get = getHeight,	put = setHeight))	double height;
+	__declspec(property(get = getDiagonal,	put = setDiagonal))	double diagonal;
 };
 

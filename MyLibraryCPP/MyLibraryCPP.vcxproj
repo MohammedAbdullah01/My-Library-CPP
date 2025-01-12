@@ -132,6 +132,9 @@
   <ItemGroup>
     <ClInclude Include="clsCircle.h" />
     <ClInclude Include="clsDate.h" />
+    <ClInclude Include="clsInputRead.h" />
+    <ClInclude Include="clsInputValidate.h" />
+    <ClInclude Include="clsMatrix.h" />
     <ClInclude Include="clsPeriod.h" />
     <ClInclude Include="clsRectangle.h" />
     <ClInclude Include="clsSquare.h" />

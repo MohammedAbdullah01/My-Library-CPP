@@ -1,14 +1,17 @@
 #pragma once
-#include <iostream>
+#include <stdexcept>
+#include <cmath>
+#include <array>
+#include "clsCircle.h"
 
 using namespace std;
 
 class clsTriangle
 {
 private:
-	float _Height = 0.0f, _Base = 0.0f, _Ribs[3] = { 0.0f, 0.0f, 0.0f };
+	double _Height = 0.0f, _Base = 0.0f, _Ribs[3] = { 0.0f, 0.0f, 0.0f };
 
-	static bool IsValidTriangle(float side1, float side2, float side3)  {
+	static bool IsValidTriangle(double side1, double side2, double side3)  {
 
 		return (side1 > 0 && side2 > 0 && side3 > 0) &&
 			(side1 + side2 > side3) &&
@@ -17,7 +20,7 @@ private:
 	}
 
 public:
-	clsTriangle(float height, float base)
+	clsTriangle(double height, double base)
 	{
 		if (height <= 0 || base <= 0) {
 			throw std::invalid_argument("Height and base must be positive values.");
@@ -27,7 +30,7 @@ public:
 		_Base = base;
 	}
 
-	clsTriangle(float side1, float side2, float side3)
+	clsTriangle(double side1, double side2, double side3)
 	{
 		if (!IsValidTriangle(side1, side2, side3)) 
 			throw std::invalid_argument("The given sides do not form a valid triangle.");
@@ -37,7 +40,7 @@ public:
 		_Ribs[2] = side3;
 	}
 
-	static float calculateTriangleArea(float height, float base)
+	static double calculateTriangleArea(double height, double base)
 	{
 		if (height > 0 && base > 0) {
 
@@ -46,25 +49,25 @@ public:
 		throw logic_error("Area cannot be calculated without height and base.");
 	}
 
-	static float calculateTriangleArea(clsTriangle triangle)
+	static double calculateTriangleArea(clsTriangle triangle)
 	{
 		return calculateTriangleArea(triangle._Height, triangle._Base);
 	}
 
-	float calculateTriangleArea()
+	double calculateTriangleArea()
 	{
 		return calculateTriangleArea(_Height, _Base);
 	}
 
-	static float CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(float ribs[3])
+	static double CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(double ribs[3])
 	{
 		if (ribs == nullptr) {
-			throw std::invalid_argument("Ribs pointer is null.");
+			throw invalid_argument("Ribs pointer is null.");
 		}
 
-		if (!clsTriangle::IsValidTriangle(ribs[0] , ribs[1] , ribs[2]))
+		if (!IsValidTriangle(ribs[0] , ribs[1] , ribs[2]))
 		{
-			throw std::invalid_argument("The provided sides do not form a valid triangle.");
+			throw invalid_argument("The provided sides do not form a valid triangle.");
 		}
 
 		double perimeter = (ribs[0] + ribs[1] + ribs[2]) / 2;
@@ -75,70 +78,70 @@ public:
 				(perimeter - ribs[1]) * (perimeter - ribs[2]));
 
 		if (denominator == 0) {
-			throw std::runtime_error("Denominator is zero, cannot calculate circumcircle area.");
+			throw runtime_error("Denominator is zero, cannot calculate circumcircle area.");
 		}
 
 		double radius = numerator / denominator;
 		double result = clsCircle::PI * radius * radius;
 
-		return (float)result;
+		return result;
 	}
 
-	static float CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(clsTriangle& triangle)
+	static double CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(clsTriangle& triangle)
 	{
-		float sides[3] = { triangle.GetRibs(0), triangle.GetRibs(1), triangle.GetRibs(2) };
+		double sides[3] = { triangle.GetRibs(0), triangle.GetRibs(1), triangle.GetRibs(2) };
 		return CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(sides);
 	}
 
-	float CalculateCircleAreaCircleDescribedAroundArbitraryTriangle()
+	double CalculateCircleAreaCircleDescribedAroundArbitraryTriangle()
 	{
 		return CalculateCircleAreaCircleDescribedAroundArbitraryTriangle(_Ribs);
 	}
 
-	static float CalculateCircleAreaInscribedInIsoscelesTriangle(float height, float base)
+	static double CalculateCircleAreaInscribedInIsoscelesTriangle(double height, double base)
 	{
 		return clsCircle::PI * (pow(base, 2) / 4) *
 			(((2 * height) - base) / ((2 * height) + base));
 	}
 
-	static float CalculateCircleAreaInscribedInIsoscelesTriangle(clsTriangle& triangle)
+	static double CalculateCircleAreaInscribedInIsoscelesTriangle(clsTriangle& triangle)
 	{
 		return CalculateCircleAreaInscribedInIsoscelesTriangle(triangle._Height, triangle._Base); 
 	}
 
-	float CalculateCircleAreaInscribedInIsoscelesTriangle()
+	double CalculateCircleAreaInscribedInIsoscelesTriangle()
 	{
 		return CalculateCircleAreaInscribedInIsoscelesTriangle(_Height, _Base);
 	}
 
-	float getBase()
+	double getBase()
 	{
 		return _Base;
 	}
 
-	float getHeight()
+	double getHeight()
 	{
 		return _Height;
 	}
 
-	float GetRibs(int index)  {
+	double GetRibs(int index)  {
 		if (index < 0 || index >= 3) {
 			throw std::out_of_range("Index out of bounds.");
 		}
 		return _Ribs[index];
 	}
 
-	void setBase(float Base)
+	void setBase(double Base)
 	{
 		_Base = Base;
 	}
 
-	void setHeight(float height)
+	void setHeight(double height)
 	{
 		_Height = height;
 	}
 
-	__declspec(property(get = getHeight, put = setHeight))	float height;
-	__declspec(property(get = getTriangleRule, put = setTriangleRule))	float Base;
+	__declspec(property(get = getHeight, put = setHeight))	double height;
+	__declspec(property(get = getTriangleRule, put = setTriangleRule))	double Base;
 };
 

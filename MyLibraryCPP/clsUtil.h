@@ -520,7 +520,7 @@ public:
 		return rand() % (to - from + 1) + from;
 	}
 
-	static enum enCharacterType{ SmallLetter, CapitalLetter, SpecialCharacter, DigitInOrder };
+	enum enCharacterType{ SmallLetter, CapitalLetter, SpecialCharacter, DigitInOrder };
 
 	static char GetCharacterRandom(enCharacterType charType)
 	{
@@ -621,15 +621,12 @@ public:
 			else
 				return (int)number;
 		}
-		return number;
+		return (int)number;
 	}
 
-	int MySqrt(float number)
+	double MySqrt(double number)
 	{
 		return pow(number, 0.5);
 	}
-
-
-
 };
 

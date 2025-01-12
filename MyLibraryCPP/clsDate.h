@@ -873,6 +873,11 @@ public:
 		return (!IsDate1BeforeDate2(date1, date2) && !IsDate1EqualDate2(date1, date2));
 	}
 
+	bool IsDate1AfterDate2(clsDate date)
+	{
+		return IsDate1AfterDate2(*this, date);
+	}
+
 	static short calculateBusinessDates(clsDate dateFrom ,clsDate dateTo)
 	{
 		if (!validateDate(dateFrom) || !validateDate(dateTo))
@@ -902,11 +907,6 @@ public:
 	short calculateBusinessFromDateToNowDate()
 	{
 		return calculateBusinessDates(GetSystemDate());
-	}
-
-	bool IsDate1AfterDate2(clsDate date)
-	{
-		return IsDate1AfterDate2(*this , date);
 	}
 
 	enum enDateCompare

@@ -1,90 +1,89 @@
 #pragma once
 #include <iostream>
 #include <stdexcept> 
-#include "clsTriangle.h"
 
 using namespace std;
 
 class clsCircle
 {
 private:
-	float  _Radius, _Diameter, _LengthPerimeter = 0;
+	double  _Radius, _Diameter, _LengthPerimeter = 0;
 
 public:
-	static constexpr double PI = 3.14159;
-	clsCircle(float  Radius, float  Diameter ,float lengthPerimeter)
+	static constexpr double PI = 3.141592653589793;
+	clsCircle(double  Radius, double  Diameter ,double lengthPerimeter)
 	{
 		_Radius = Radius;
 		_Diameter = Diameter;
 		_LengthPerimeter = lengthPerimeter;
 	}
 
-	float  getRadius()
+	double  getRadius()
 	{
 		return _Radius;
 	}
 
-	float  getDiameter()
+	double  getDiameter()
 	{
 		return _Diameter;
 	}
 
-	void setRadius(float  radius)
+	void setRadius(double  radius)
 	{
 		_Radius = radius;
 	}
 
-	void setDiameter(float  diameter)
+	void setDiameter(double  diameter)
 	{
 		_Diameter = diameter;
 	}
 
-	static float CalculateCircleAreaByRadius(float radius)
+	static double CalculateCircleAreaByRadius(double radius)
 	{
-		return (PI * pow(radius, 2));
+		return (double)(PI * pow(radius, 2));
 	}
 
-	static float CalculateCircleAreaByRadius(clsCircle circle)
+	static double CalculateCircleAreaByRadius(clsCircle circle)
 	{
 		return CalculateCircleAreaByRadius(circle.radius);
 	}
 
-	float CalculateCircleAreaByRadius()
+	double CalculateCircleAreaByRadius()
 	{
 		return CalculateCircleAreaByRadius(_Radius);
 	}
 
-	static float CalculateAreaCircleFullDiameter(float diameter)
+	static double CalculateAreaCircleFullDiameter(double diameter)
 	{
 		return PI * pow(diameter, 2) / 4;
 	}
 
-	static float CalculateAreaCircleFullDiameter(clsCircle circle)
+	static double CalculateAreaCircleFullDiameter(clsCircle circle)
 	{
 		return CalculateAreaCircleFullDiameter(circle.diameter);
 	}
 
-	float CalculateAreaCircleFullDiameter()
+	double CalculateAreaCircleFullDiameter()
 	{
 		return CalculateAreaCircleFullDiameter(_Diameter);
 	}
 
-	static float CalculateCircleAreaAlongCircumference(float lengthPerimeter)
+	static double CalculateCircleAreaAlongCircumference(double lengthPerimeter)
 	{
 		return pow(lengthPerimeter, 2) / (PI * 4);
 	}
 
-	static float CalculateCircleAreaAlongCircumference(clsCircle circle)
+	static double CalculateCircleAreaAlongCircumference(clsCircle circle)
 	{
 		return CalculateCircleAreaAlongCircumference(circle._LengthPerimeter);
 	}
 
-	float CalculateCircleAreaAlongCircumference()
+	double CalculateCircleAreaAlongCircumference()
 	{
 		return CalculateCircleAreaAlongCircumference(_LengthPerimeter);
 	}
 
-	__declspec(property(get = getRadius,	put = setRadius))	float  radius;
-	__declspec(property(get = getDiameter,	put = setDiameter))	float  diameter;
+	__declspec(property(get = getRadius,	put = setRadius))	double  radius;
+	__declspec(property(get = getDiameter,	put = setDiameter))	double  diameter;
 };
 
