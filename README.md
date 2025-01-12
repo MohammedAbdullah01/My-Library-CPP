@@ -25,9 +25,6 @@ This project consists of several classes that offer extensive functionalities fo
 
 These classes are designed to be used independently or together, providing a robust and versatile toolkit for developers.
 
-## Installation
-Instructions on how to install and use the project.
-
 ## Usage
 ### `clsString` Class
 - **Overview**: The `clsString` class provides various methods for manipulating and analyzing string values.
