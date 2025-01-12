@@ -23,6 +23,10 @@ This project consists of several classes that offer extensive functionalities fo
 
 - **clsUtil**: Contains a variety of utility functions for mathematical operations, data handling, and encryption.
 
+- **clsInputRead**: Provides methods for reading user input in various formats.
+ 
+- **clsInputValidate**: Provides methods for validating different types of user input.
+
 These classes are designed to be used independently or together, providing a robust and versatile toolkit for developers.
 
 ## Usage
@@ -241,3 +245,28 @@ These classes are designed to be used independently or together, providing a rob
   - `setYear()`
 - **Enums**:
   - enNumberOfDaysPerMonth
+ 
+### `clsInputRead` Class
+- **Overview**: The clsInputRead class provides methods for reading user input in various formats.
+- **Methods**:
+  - `static char ReadCharacter(string msg)`
+  - `static string ReadWord(string msg)`
+  - `static string ReadWords(string msg)`
+  - `static double ReadNumberDouble(string msg)`
+  - `static int ReadNumberInteger(string msg)`
+  - `static double ReadPositiveDoubleNumber(string msgInvalid)`
+  - `static int ReadPositiveNumber(string msgInvalid)`
+  - `static double ReadNumberInRangeDouble(double from, double to , string msgInvalid)`
+  - `static int ReadNumberInRange(int from, int to , string msgInvalid)`
+  - `static char ReadCharacterAsteriskOrPlusOrMinusOrDivide()`
+ 
+
+### `clsInputValidate` Class
+- **Overview**: The clsInputValidate class provides methods for validating different types of user input.
+- **Methods**:
+  - `static bool IsNumberBetween(float num, float numFrom, float numTo)`
+  - `static bool IsNumberBetween(short num, short numFrom, short numTo)`
+  - `static bool IsDateBetween(clsDate currentDate , clsDate dateFrom , clsDate dateTo)`
+  - `static int ReadNumberWithValidate(string msgInvalid)`
+  - `static bool IsValidateDate(clsDate date)`
+
