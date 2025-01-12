@@ -1,8 +1,8 @@
 #include <iostream>
-#include "clsString.h"
-#include "clsDate.h"
-#include "clsPeriod.h"
 #include "clsCircle.h"
+#include "clsDate.h"
+#include "clsString.h"
+#include "clsPeriod.h"
 #include "clsMatrix.h"
 #include "clsRectangle.h"
 #include "clsSquare.h"
