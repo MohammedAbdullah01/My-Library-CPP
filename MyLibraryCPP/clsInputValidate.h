@@ -74,11 +74,7 @@ public:
 	}
 
 	static bool IsValidateDate(clsDate date) {
-		if (date.month < 1 || date.month > 12 || date.day < 1 || date.day > 31) {
-			return false;
-		}
-		short daysInMonth = clsDate::howManyDaysInMonth(date.year, (clsDate::enNumberOfDaysPerMonth)date.month);
-		return date.day <= daysInMonth;
+		return clsDate::validateDate(date);
 	}
 };
 
