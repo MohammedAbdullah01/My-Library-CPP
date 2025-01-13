@@ -3,6 +3,8 @@
 #include <iomanip>
 #include "clsUtil.h"
 #include "clsDate.h"
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -10,35 +12,65 @@ class clsInputValidate
 {
 public:
 
-	static bool IsNumberBetween(float num, float numFrom, float numTo)
+	static bool IsNumberBetween(double num, double numFrom, double numTo)
 	{
 		return num >= numFrom && num <= numTo;
 	}
 
+	static bool IsNumberBetween(int num, int numFrom, int numTo)
+	{
+		return IsNumberBetween((double)num, (double)numFrom, (double)numTo);
+	}
+
 	static bool IsNumberBetween(short num, short numFrom, short numTo)
 	{
-		return IsNumberBetween(num , numFrom , numTo);
+		return IsNumberBetween((double)num, (double)numFrom, (double)numTo);
 	}
 
 	static bool IsDateBetween(clsDate currentDate , clsDate dateFrom , clsDate dateTo)
 	{
-		return (currentDate.CompareDates(dateFrom) != clsDate::enDateCompare::Before) &&
-			(currentDate.CompareDates(dateTo) != clsDate::enDateCompare::After);
+		if ((currentDate.CompareDates(dateFrom) == clsDate::enDateCompare::After) &&
+			(currentDate.CompareDates(dateTo) == clsDate::enDateCompare::Before))
+		{
+			return true;
+		}
+
+		if ((currentDate.CompareDates(dateTo) != clsDate::enDateCompare::Before) &&
+			(currentDate.CompareDates(dateFrom) != clsDate::enDateCompare::After))
+			return true;
+
+		return false;
 	}
 
-	static int ReadNumberWithValidate(string msgInvalid)
+	static double ReadDoubleNumberWithValidate(string msgInvalid)
 	{
-		int number;
-		cin >> number;
+		double number;
+		string input;
 
-		while (cin.fail())
+		while (true)
 		{
-			cin.clear();
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			cout << msgInvalid;
-			cin >> number;
+			cin >> input; // Read input as string
+
+			// Try to convert the input to a double
+			stringstream ss(input);
+			if (ss >> number && ss.eof())  // Ensure the entire string is valid and can be converted to a double
+			{
+				break;  // Exit the loop if the number is valid
+			}
+			else
+			{
+				cin.clear();
+				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+				cout << msgInvalid; // Print the invalid message
+			}
 		}
+
 		return number;
+	}
+
+	static int ReadIntNumberWithValidate(string msgInvalid)
+	{
+		return (int)ReadDoubleNumberWithValidate(msgInvalid);
 	}
 
 	static bool IsValidateDate(clsDate date) {

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "clsInputValidate.h"
 
 using namespace std;
 
@@ -30,49 +31,59 @@ public:
 		return Inter;
 	}
 
-	static double ReadNumberDouble(string msg)
+	static double ReadDoubleNumber()
 	{
 		double number;
-		cout << msg;
 		cin >> number;
 		return number;
 	}
 
-	static int ReadNumberInteger(string msg)
+	static int ReadIntNumber()
 	{
-		return ReadNumberDouble(msg);
+		return (int)ReadDoubleNumber();
+	}
+
+	static short ReadShortNumber()
+	{
+		return (short)ReadIntNumber();
 	}
 
 	static double ReadPositiveDoubleNumber(string msgInvalid)
 	{
-		double number;
-		do
+		double number = ReadDoubleNumber();
+		while (number <= 0)
 		{
-			number = ReadNumberDouble(msgInvalid);
-		} while (number <= 0);
-
+			cout << msgInvalid << endl;
+		}
 		return number;
 	}
 
 	static int ReadPositiveNumber(string msgInvalid)
 	{
-		return ReadPositiveDoubleNumber(msgInvalid);
+		return (int)ReadPositiveDoubleNumber(msgInvalid);
 	}
 
-	static double ReadNumberInRangeDouble(double from, double to , string msgInvalid)
+	static double ReadNumberInRange(double from, double to , string msgInvalid)
 	{
-		double number;
-		do
-		{
-			number = ReadNumberInteger(msgInvalid);
-		} while (number < from || number > to);
 
+		double number = ReadDoubleNumber();
+		
+		while ( !clsInputValidate::IsNumberBetween(number , from , to))
+		{
+			cout << msgInvalid << endl;
+			number = ReadDoubleNumber();
+		}
 		return number;
 	}
 
 	static int ReadNumberInRange(int from, int to , string msgInvalid)
 	{
-		return ReadNumberInRangeDouble(from , to , msgInvalid);
+		return (int)ReadNumberInRange((double)from , (double)to , msgInvalid);
+	}
+
+	static short ReadNumberInRange(short from, short to, string msgInvalid)
+	{
+		return (short)ReadNumberInRange((double)from, (double)to, msgInvalid);
 	}
 
 	static char ReadCharacterAsteriskOrPlusOrMinusOrDivide()
