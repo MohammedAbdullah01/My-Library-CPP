@@ -8,6 +8,8 @@
 #include "clsSquare.h"
 #include "clsUtil.h"
 #include "clsTriangle.h"
+#include "clsInputRead.h"
+#include "clsInputValidate.h"
 
 
 using namespace std;
